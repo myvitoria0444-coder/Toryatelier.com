@@ -1,0 +1,657 @@
+index.html.
+
+<!doctype html>
+<html lang=“pt-br”>
+<head>
+  <meta charset=“utf-8” />
+  <meta name=“viewport” content=“width=device-width,initial-scale=1” />
+  <title>Tory Atelier — Portfólio de Moda</title>
+  <meta name=“description” content=“Portfólio de moda + diário de evolução: desenhos, estudos, processos e referências.” />
+
+  <style>
+    :root{
+      --bg: #0b0b10;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 18px 70px rgba(0,0,0,.55);
+      --r: 18px;
+      --max: 1100px;
+}
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1100px 700px at 20% 0%, rgba(163,84,255,.25), transparent 55%),
+        radial-gradient(900px 600px at 90% 10%, rgba(0,232,255,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(255,80,160,.10), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    / Top bar /
+    header{
+      position: sticky; top:0; z-index:50;
+      background: rgba(11,11,16,.72);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.3px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 55%),
+        linear-gradient(135deg, rgba(163,84,255,.9), rgba(0,232,255,.65), rgba(255,80,160,.7));
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.18);
+}
+    nav{
+      display:flex; gap:8px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+    nav a:hover{
+      color: var(--text);
+      background: var(--panel);
+      border-color: var(--line);
+    }
+
+    / Hero /
+    .hero{
+      padding:42px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
+}
+    .hero-card{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: calc(var(--r) + 6px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card::before{
+      content:””;
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 300px at 20% 0%, rgba(163,84,255,.35), transparent 60%),
+                  radial-gradient(500px 300px at 90% 10%, rgba(0,232,255,.25), transparent 60%),
+                  radial-gradient(500px 400px at 50% 120%, rgba(255,80,160,.18), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+      filter: blur(0px);
+}
+    .hero-inner{
+      position:relative;
+      padding:22px;
+    }
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      font-size:12px;
+      color: var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      padding:7px 10px;
+      border-radius: 999px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background: rgba(0,232,255,.9);
+      box-shadow: 0 0 0 4px rgba(0,232,255,.14);
+    }
+    h1{
+      margin:12px 0 10px;
+      font-size: 36px;
+      line-height:1.15;
+      letter-spacing: -0.3px;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+    .cta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:16px;
+}
+    .btn{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:11px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      font-weight:700;
+      font-size:14px;
+    }
+    .btn:hover{background: rgba(255,255,255,.12)}
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, rgba(163,84,255,.9), rgba(0,232,255,.7), rgba(255,80,160,.7));
+      color:#0b0b10;
+    }
+    .btn.primary:hover{filter: brightness(1.06)}
+    .mini{
+      display:grid;
+      grid-template-rows: auto 1fr;
+      gap:10px;
+    }
+    .mini-card{
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--r);
+      padding:14px;
+}
+    .mini-card b{display:block; margin-bottom:6px}
+    .mini-card .muted{color: var(--muted); font-size:13px}
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    .stat{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding:12px;
+      text-align:left;
+    }
+    .stat .n{font-size:20px; font-weight:900}
+    .stat .l{font-size:12px; color: var(--muted)}
+
+    / Sections /
+    section{padding:26px 0; border-top:1px solid var(--line)}
+    .section-title{
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap:10px;
+      margin-bottom: 12px;
+}
+    .section-title h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+    .hint{color:var(--muted); font-size:13px}
+
+    / Gallery /
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .shot{
+      grid-column: span 4;
+      border-radius: var(--r);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      cursor:pointer;
+      position:relative;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .shot:hover{transform: translateY(-3px); filter: brightness(1.06)}
+    .shot img{
+      width:100%;
+      height: 240px;
+      object-fit: cover;
+      display:block;
+    }
+    .cap{
+      padding:12px 12px 14px;
+}
+    .cap b{display:block; margin-bottom:4px}
+    .cap small{color: var(--muted)}
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      font-size:12px;
+      color: var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      padding:5px 8px;
+      border-radius:999px;
+    }
+
+    / Cards /
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:12px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--r);
+      padding:14px;
+    }
+    .card b{display:block; margin-bottom:6px}
+    .card p{margin:8px 0 0; color: var(--muted); font-size:14px}
+
+    / Timeline /
+    .timeline{
+      display:grid;
+      gap:10px;
+}
+    .step{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding:14px;
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap:12px;
+      align-items:start;
+    }
+    .step .when{
+      font-size:12px;
+      color: var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      padding:7px 10px;
+      border-radius:999px;
+      display:inline-block;
+      width: fit-content;
+    }
+    .step b{display:block; margin:6px 0}
+    .step p{margin:0; color: var(--muted); font-size:14px}
+
+    / Footer /
+    footer{
+      border-top:1px solid var(--line);
+      padding:18px 0 28px;
+      color: var(--muted);
+      font-size:13px;
+    }
+
+    / Modal /
+    .modal{
+      position:fixed; inset:0; z-index:100;
+      display:none;
+      align-items:center; justify-content:center;
+      padding:18px;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(8px);
+}
+    .modal.open{display:flex}
+    .modal-box{
+      max-width: 980px;
+      width: 100%;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(11,11,16,.75);
+      border-radius: calc(var(--r) + 8px);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .modal-top{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+    }
+    .modal-top b{font-size:14px}
+    .x{
+      appearance:none; border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:800;
+    }
+    .x:hover{background: rgba(255,255,255,.12)}
+    .modal-img{
+      width:100%;
+      height: min(70vh, 720px);
+      object-fit: contain;
+      background: rgba(0,0,0,.35);
+      display:block;
+    }
+    .modal-cap{padding:12px 14px; color: var(--muted); font-size:14px}
+@media (max-width: 920px){
+      .hero-grid{grid-template-columns: 1fr}
+      h1{font-size:30px}
+      .shot{grid-column: span 6}
+      .cards{grid-template-columns: 1fr}
+      .stats{grid-template-columns: 1fr}
+      .step{grid-template-columns: 1fr}
+      .shot img{height: 220px}
+    }
+    @media (max-width: 520px){
+      .shot{grid-column: span 12}
+      nav{gap:6px}
+      nav a{padding:8px 10px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class=“wrap”>
+      <div class=“nav”>
+        <div class=“brand”>
+          <div class=“logo” aria-hidden=“true”></div>
+          <span>Tory Atelier</span>
+        </div>
+        <nav>
+          <a href=“#portfolio”>Portfólio</a>
+          <a href=“#processo”>Processo</a>
+          <a
+href=“#aprendizado”>Aprendizado</a>
+          <a href=“#contato”>Contato</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class=“wrap”>
+    <div class=“hero”>
+      <div class=“hero-grid”>
+        <div class=“hero-card”>
+          <div class=“hero-inner”>
+            <span class=“badge”><span class=“dot”></span> Moda + evolução em público</span>
+<h1>Portfólio de moda, estudos e criações em desenvolvimento.</h1>
+            <p class=“sub”>
+              Aqui eu registro meu caminho aprendendo moda: desenhos, referências, testes e melhorias.
+              O foco é construir técnica e identidade própria.
+            </p>
+            <div class=“cta”>
+              <a class=“btn primary” href=“#portfolio”>Ver Portfólio</a>
+              <a class=“btn” href=“#processo”>Ver Processo</a>
+              <a class=“btn” href=“#contato”>Contato</a>
+            </div>
+          </div>
+        </div>
+
+        <div class=“mini”>
+          <div class=“mini-card”>
+            <b>O que você vai ver aqui</b>
+            <div class=“muted”>
+              • Coleções / peças<br/>
+              • Estudos de silhueta e caimento<br/>
+              • Diário de aprendizado<br/>
+              • Bastidores do processo criativo
+            </div>
+          </div>
+<div class=“stats”>
+            <div class=“stat”>
+              <div class=“n” id=“countPieces”>06</div>
+              <div class=“l”>peças / estudos</div>
+            </div>
+            <div class=“stat”>
+              <div class=“n”>01</div>
+              <div class=“l”>coleção em construção</div>
+            </div>
+            <div class=“stat”>
+              <div class=“n” id=“year”></div>
+              <div class=“l”>atualizado</div>
+</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <section id=“portfolio”>
+      <div class=“section-title”>
+        <h2>Portfólio</h2>
+        <div class=“hint”>Toque na imagem para abrir grande</div>
+      </div>
+
+      <div class=“gallery”>
+        <!-- TROQUE os src pelas suas fotos (pode ser URL ou nome do arquivo) -->
+        <article class=“shot” data-title=“Noite Imperial” data-desc=“Vestido de gala com capa — foco em impacto e movimento.”>
+</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <section id=“portfolio”>
+      <div class=“section-title”>
+        <h2>Portfólio</h2>
+        <div class=“hint”>Toque na imagem para abrir grande</div>
+      </div>
+
+      <div class=“gallery”>
+        <!-- TROQUE os src pelas suas fotos (pode ser URL ou nome do arquivo) -->
+        <article class=“shot” data-title=“Noite Imperial” data-desc=“Vestido de gala com capa — foco em impacto e movimento.”>
+<img src=“IMAGEM-1.jpg” alt=“Noite Imperial” />
+          <div class=“cap”>
+            <b>Noite Imperial</b>
+            <small>Gala • Silhueta sereia • Capa</small>
+            <div class=“tagrow”>
+              <span class=“pill”>caimento</span><span class=“pill”>elegância</span><span class=“pill”>movimento</span>
+            </div>
+          </div>
+        </article>
+<article class=“shot” data-title=“Urbano Real” data-desc=“Look do dia a dia — conforto + estilo, pensado para andar bastante.”>
+          <img src=“IMAGEM-2.jpg” alt=“Urbano Real” />
+          <div class=“cap”>
+            <b>Urbano Real</b>
+            <small>Street • Conforto • Repetição inteligente</small>
+            <div class=“tagrow”>
+              <span class=“pill”>street</span><span class=“pill”>camadas</span><span class=“pill”>prático</span>
+            </div>
+          </div>
+        </article>
+<article class=“shot” data-title=“Silhuetas — Estudos” data-desc=“Variações de silhueta e proporção para treinar olhar e estrutura.”>
+          <img src=“IMAGEM-3.jpg” alt=“Silhuetas” />
+          <div class=“cap”>
+            <b>Silhuetas — Estudos</b>
+            <small>Proporção • Estrutura • Treino</small>
+            <div class=“tagrow”>
+              <span class=“pill”>proporção</span><span class=“pill”>shape</span><span class=“pill”>base</span>
+            </div>
+          </div>
+        </article>
+<article class=“shot” data-title=“Texturas” data-desc=“Estudo de tecido: peso, dobras e luz.”>
+          <img src=“IMAGEM-4.jpg” alt=“Texturas” />
+          <div class=“cap”>
+            <b>Texturas</b>
+            <small>Tecido • Dobras • Luz</small>
+            <div class=“tagrow”>
+              <span class=“pill”>tecido</span><span class=“pill”>detalhe</span><span class=“pill”>realismo</span>
+            </div>
+          </div>
+        </article>
+
+        <article class=“shot” data-title=“Conceito — Coleção” data-desc=“Mood e direção criativa: referências, paleta e intenção.”>
+          <img src=“IMAGEM-5.jpg”
+alt=“Conceito” />
+          <div class=“cap”>
+            <b>Conceito — Coleção</b>
+            <small>Moodboard • Paleta • Mensagem</small>
+            <div class=“tagrow”>
+              <span class=“pill”>conceito</span><span class=“pill”>paleta</span><span class=“pill”>referência</span>
+            </div>
+          </div>
+        </article>
+
+        <article class=“shot” data-title=“Detalhes & Recortes” data-desc=“Variações de decote, cintura e recortes para entender desenho técnico.”>
+          <img src=“IMAGEM-6.jpg” alt=“Detalhes” />
+          <div class=“cap”>
+            <b>Detalhes & Recortes</b>
+            <small>Decotes • Recortes • Construção</small>
+            <div class=“tagrow”>
+              <span class=“pill”>construção</span><span class=“pill”>modelagem</span><span class=“pill”>linha</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+<section id=“processo”>
+      <div class=“section-title”>
+        <h2>Processo criativo</h2>
+        <div class=“hint”>Mostra que você pensa como designer</div>
+      </div>
+
+      <div class=“cards”>
+        <div class=“card”>
+          <b>1) Observação</b>
+          <p>Eu começo olhando roupas reais, pessoas na rua, referências antigas e tendências atuais. Moda é contexto.</p>
+        </div>
+        <div class=“card”>
+          <b>2) Rascunho</b>
+          <p>Faço várias versões rápidas. O objetivo aqui é explorar forma e ideia, não “desenhar bonito”.</p>
+        </div>
+        <div class=“card”>
+          <b>3) Refinamento</b>
+          <p>Escolho a melhor direção e melhoro proporção, caimento e detalhes. Depois organizo em apresentação.</p>
+        </div>
+      </div>
+    </section>
+<section id=“aprendizado”>
+      <div class=“section-title”>
+        <h2>Diário de aprendizado</h2>
+        <div class=“hint”>Atualize semanalmente (mesmo curto)</div>
+      </div>
+
+      <div class=“timeline”>
+        <div class=“step”>
+          <div>
+            <span class=“when”>Semana 1</span>
+          </div>
+          <div>
+            <b>Proporção & pose</b>
+            <p>Treinei base do corpo (ombros, quadril e pernas). Meta: consistência e postura mais natural.</p>
+          </div>
+        </div>
+
+        <div class=“step”>
+          <div>
+            <span class=“when”>Semana 2</span>
+          </div>
+          <div>
+            <b>Caimento de tecido</b>
+            <p>Observei dobras e peso do tecido em fotos reais para parar de desenhar “linhas aleatórias”.</p>
+          </div>
+        </div>
+<div class=“step”>
+          <div>
+            <span class=“when”>Semana 3</span>
+          </div>
+          <div>
+            <b>Silhuetas</b>
+            <p>Estudei 5 silhuetas e fiz variações. Meta: entender o “porquê” do shape, não copiar tendência.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id=“contato”>
+      <div class=“section-title”>
+        <h2>Contato</h2>
+        <div class=“hint”>Use um e-mail só pro site</div>
+      </div>
+<div class=“cards”>
+        <div class=“card”>
+          <b>E-mail</b>
+          <p>seuemail@exemplo.com</p>
+        </div>
+        <div class=“card”>
+          <b>Redes</b>
+          <p>Instagram / YouTube / TikTok (coloque os links)</p>
+        </div>
+        <div class=“card”>
+          <b>Parcerias</b>
+          <p>Projetos criativos, collabs, feedback e oportunidades.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id=“footerYear”></span> Tory Atelier • Feito em HTML • Portfólio em evolução
+    </footer>
+  </div>
+
+  <!-- Modal (abre foto grande) -->
+  <div class=“modal” id=“modal” role=“dialog” aria-modal=“true” aria-label=“Imagem ampliada”>
+    <div class=“modal-box”>
+      <div class=“modal-top”>
+        <b id=“mTitle”>Imagem</b>
+        <button class=“x” id=“closeBtn” type=“button”>Fechar ✕</button>
+      </div>
+<img class=“modal-img” id=“mImg” alt=“” />
+      <div class=“modal-cap” id=“mDesc”></div>
+    </div>
+  </div>
+
+  <script>
+    // Ano
+    const y = new Date().getFullYear();
+    document.getElementById(“year”).textContent = y;
+    document.getElementById(“footerYear”).textContent = y;
+
+    // Contador automático de peças (quantos cards na galeria)
+    const shots = Array.from(document.querySelectorAll(“.shot”));
+    document.getElementById(“countPieces”).textContent = String(shots.length).padStart(2,”0”);
+
+    // Modal
+    const modal = document.getElementById(“modal”);
+    const mTitle = document.getElementById(“mTitle”);
+    const mImg = document.getElementById(“mImg”);
+    const mDesc = document.getElementById(“mDesc”);
+const closeBtn = document.getElementById(“closeBtn”);
+
+    function openModal(title, src, desc){
+      mTitle.textContent = title || “Imagem”;
+      mImg.src = src;
+      mImg.alt = title || “Imagem”;
+      mDesc.textContent = desc || “”;
+      modal.classList.add(“open”);
+    }
+    function closeModal(){
+      modal.classList.remove(“open”);
+      mImg.src = “”;
+    }
+
+    shots.forEach(card=>{
+      card.addEventListener(“click”, ()=>{
+        const title = card.dataset.title;
+        const desc = card.dataset.desc;
+        const img = card.querySelector(“img”);
+        openModal(title, img.src, desc);
+      });
+    });
+closeBtn.addEventListener(“click”, closeModal);
+    modal.addEventListener(“click”, (e)=>{
+      if(e.target === modal) closeModal();
+    });
+    document.addEventListener(“keydown”, (e)=>{
+      if(e.key === “Escape”) closeModal();
+    });
+  </script>
+</body>
+</html>
+
+
